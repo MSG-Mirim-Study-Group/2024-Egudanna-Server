@@ -5,8 +5,8 @@ import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Getter
+@Setter
 @Builder
 @Entity
 @Table(name = "challenges")
@@ -21,8 +21,8 @@ public class Challenge extends BaseTimeEntity {
     @Column(name = "video_id")
     private Long videoId;
 
-    @Column(name = "like")
-    private Long like;
+    @Column(name = "like_num")
+    private Long likeNum;
 
     @CollectionTable(name = "levels", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "level_id")
