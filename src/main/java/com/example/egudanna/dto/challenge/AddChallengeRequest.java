@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class AddChallengeRequest {
     private Long id;
     private Long videoId;
-    private Long like;
+    private Long likeNum;
     private Long levelId;
     private String title;
     private String nickname;
@@ -27,7 +27,7 @@ public class AddChallengeRequest {
         return Challenge.builder()
                 .id(id)
                 .videoId(videoId)
-                .like(like)
+                .likeNum(likeNum)
                 .levelId(levelId)
                 .title(title)
                 .nickname(nickname)
