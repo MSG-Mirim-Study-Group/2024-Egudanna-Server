@@ -23,7 +23,7 @@ public class AddChallengeRequest {
     private String email;
     private String password;
 
-    public Challenge toEntity(Challenge challenge) {
+    public Challenge toEntity() {
         return Challenge.builder()
                 .id(id)
                 .videoId(videoId)
