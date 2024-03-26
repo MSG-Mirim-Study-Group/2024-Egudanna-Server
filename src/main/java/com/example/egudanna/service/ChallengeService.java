@@ -46,4 +46,8 @@ public class ChallengeService {
 
         return challenge;
     }
+
+    public void delete(Long id) {
+        challengeRepository.deleteById(id);
+    }
 }
