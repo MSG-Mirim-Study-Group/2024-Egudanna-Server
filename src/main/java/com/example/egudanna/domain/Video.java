@@ -2,12 +2,14 @@ package com.example.egudanna.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 @Builder
+@DynamicUpdate
 @Entity
 @Table(name = "videos")
 public class Video extends BaseTimeEntity{
@@ -27,4 +29,10 @@ public class Video extends BaseTimeEntity{
     @CollectionTable(name = "levels", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "level_id")
     private Long levelId;
+
+    public void update(String videoUrl, Long categoryId, Long levelId) {
+        this.videoUrl = videoUrl;
+        this.categoryId = categoryId;
+        this.levelId = levelId;
+    }
 }

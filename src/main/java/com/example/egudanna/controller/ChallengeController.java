@@ -46,7 +46,7 @@ public class ChallengeController {
                 .body(new ChallengeResponse(challenge));
     }
 
-    @PutMapping("/api/challenges/{id}")
+    @PatchMapping("/api/challenges/{id}")
     public ResponseEntity<Challenge> updateChallenge(@PathVariable("id") Long id,
                                          @RequestBody UpdateChallengeRequest request) {
         Challenge updatedChallenge = challengeService.update(id, request);
