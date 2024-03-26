@@ -16,13 +16,14 @@ public class ChallengeResponse {
     private String password;
 
     public ChallengeResponse(Challenge challenge) {
-        this.videoId = getVideoId();
-        this.likeNum = getLikeNum();
-        this.levelId = getLevelId();
-        this.title = getTitle();
-        this.nickname = getNickname();
-        this.hashtag = getHashtag();
-        this.email = getEmail();
-        this.password = getPassword();
+        this.id = challenge.getId();
+        this.videoId = challenge.getVideoId();
+        this.likeNum = challenge.getLikeNum();
+        this.levelId = challenge.getLevelId();
+        this.title = challenge.getTitle();
+        this.nickname = challenge.getNickname();
+        this.hashtag = challenge.getHashtag();
+        this.email = challenge.getEmail();
+        this.password = challenge.getPassword();
     }
 }
