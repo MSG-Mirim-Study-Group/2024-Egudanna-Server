@@ -18,14 +18,14 @@ public class Challenge extends BaseTimeEntity {
     private Long id;
 
     @CollectionTable(name = "videos", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "video_id", nullable = false)
+    @Column(name = "video_id")
     private Long videoId;
 
     @Column(name = "like_num")
     private Long likeNum;
 
     @CollectionTable(name = "levels", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "level_id", nullable = false)
+    @Column(name = "level_id")
     private Long levelId;
 
     @Column(name = "title", nullable = false)
@@ -42,4 +42,15 @@ public class Challenge extends BaseTimeEntity {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    public void update(Long videoId, Long likeNum, Long levelId, String title, String nickname, String hashtag, String email, String password) {
+        this.videoId = videoId;
+        this.likeNum = likeNum;
+        this.levelId = levelId;
+        this.title = title;
+        this.nickname = nickname;
+        this.hashtag = hashtag;
+        this.email = email;
+        this.password = password;
+    }
 }
