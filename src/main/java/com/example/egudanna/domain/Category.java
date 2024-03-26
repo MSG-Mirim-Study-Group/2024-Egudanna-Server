@@ -16,6 +16,6 @@ public class Category {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "genre")
+    @Column(name = "genre", nullable = false)
     private String genre;
 }

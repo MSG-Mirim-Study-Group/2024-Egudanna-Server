@@ -16,6 +16,6 @@ public class Level {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "level")
+    @Column(name = "level", nullable = false)
     private int level;
 }
