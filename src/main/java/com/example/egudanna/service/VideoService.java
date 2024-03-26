@@ -6,6 +6,8 @@ import com.example.egudanna.repository.VideoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class VideoService {
@@ -14,5 +16,14 @@ public class VideoService {
 
     public Video save(AddVideoRequest request) {
         return videoRepository.save(request.toEntity());
+    }
+
+    public List<Video> findAll() {
+        return videoRepository.findAll();
+    }
+
+    public Video findById(Long id) {
+        return videoRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("not found: "+id));
     }
 }
