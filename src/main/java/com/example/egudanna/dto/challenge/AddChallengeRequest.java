@@ -2,9 +2,6 @@ package com.example.egudanna.dto.challenge;
 
 
 import com.example.egudanna.domain.Challenge;
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
