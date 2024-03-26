@@ -17,14 +17,14 @@ public class Video extends BaseTimeEntity{
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "video_url")
+    @Column(name = "video_url", nullable = false)
     private String videoUrl;
 
     @CollectionTable(name = "categories", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "category_id")
+    @Column(name = "category_id", nullable = false)
     private Long categoryId;
 
     @CollectionTable(name = "levels", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "level_id")
+    @Column(name = "level_id", nullable = false)
     private Long levelId;
 }
