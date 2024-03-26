@@ -2,12 +2,14 @@ package com.example.egudanna.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 @Builder
+@DynamicUpdate
 @Entity
 @Table(name = "categories")
 public class Category {
