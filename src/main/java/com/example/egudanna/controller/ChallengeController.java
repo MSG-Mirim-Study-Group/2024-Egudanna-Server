@@ -47,10 +47,18 @@ public class ChallengeController {
     }
 
     @PutMapping("/api/challenges/{id}")
-    public ResponseEntity<Challenge> update(@PathVariable("id") Long id,
+    public ResponseEntity<Challenge> updateChallenge(@PathVariable("id") Long id,
                                          @RequestBody UpdateChallengeRequest request) {
         Challenge updatedChallenge = challengeService.update(id, request);
         return ResponseEntity.ok()
                 .body(updatedChallenge);
+    }
+
+    @DeleteMapping("/api/challenges/{id}")
+    public ResponseEntity<Void> deleteChallenge(@PathVariable("id") Long id) {
+        challengeService.delete(id);
+
+        return ResponseEntity.ok()
+                .build();
     }
 }
