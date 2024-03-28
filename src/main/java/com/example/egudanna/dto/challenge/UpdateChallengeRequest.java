@@ -15,6 +15,7 @@ public class UpdateChallengeRequest {
     private String title;
     private String nickname;
     private String hashtag;
+    private String videoUrl;
     private String email;
     private String password;
 }

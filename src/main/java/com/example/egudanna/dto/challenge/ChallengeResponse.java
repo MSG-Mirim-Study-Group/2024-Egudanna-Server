@@ -12,6 +12,7 @@ public class ChallengeResponse {
     private String title;
     private String nickname;
     private String hashtag;
+    private String videoUrl;
     private String email;
     private String password;
 
@@ -23,6 +24,7 @@ public class ChallengeResponse {
         this.title = challenge.getTitle();
         this.nickname = challenge.getNickname();
         this.hashtag = challenge.getHashtag();
+        this.videoUrl = challenge.getVideoUrl();
         this.email = challenge.getEmail();
         this.password = challenge.getPassword();
     }

@@ -41,6 +41,7 @@ public class ChallengeService {
                 request.getTitle(),
                 request.getNickname(),
                 request.getHashtag(),
+                request.getVideoUrl(),
                 request.getEmail(),
                 request.getPassword());
 
