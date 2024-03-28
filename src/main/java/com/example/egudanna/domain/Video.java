@@ -19,7 +19,7 @@ public class Video extends BaseTimeEntity{
     @Column(name = "id", updatable = false, nullable = false)
     private Long videoId;
 
-    @Column(name = "video_url")
+    @Column(name = "video_url", length = 20000)
     private String videoUrl;
 
     @CollectionTable(name = "categories", joinColumns = @JoinColumn(name = "id"))

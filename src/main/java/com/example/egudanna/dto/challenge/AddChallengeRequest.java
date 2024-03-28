@@ -17,6 +17,7 @@ public class AddChallengeRequest {
     private String title;
     private String nickname;
     private String hashtag;
+    private String videoUrl;
     private String email;
     private String password;
 
@@ -29,6 +30,7 @@ public class AddChallengeRequest {
                 .title(title)
                 .nickname(nickname)
                 .hashtag(hashtag)
+                .videoUrl(videoUrl)
                 .email(email)
                 .password(password)
                 .build();

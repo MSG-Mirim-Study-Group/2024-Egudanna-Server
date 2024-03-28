@@ -39,19 +39,23 @@ public class Challenge extends BaseTimeEntity {
     @Column(name = "hashtag", nullable = false)
     private String hashtag;
 
+    @Column(name = "video_url", nullable = false, length = 20000)
+    private String videoUrl;
+
     @Column(name = "email")
     private String email;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    public void update(Long videoId, Long likeNum, Long levelId, String title, String nickname, String hashtag, String email, String password) {
+    public void update(Long videoId, Long likeNum, Long levelId, String title, String nickname, String hashtag, String videoUrl, String email, String password) {
         this.videoId = videoId;
         this.likeNum = likeNum;
         this.levelId = levelId;
         this.title = title;
         this.nickname = nickname;
         this.hashtag = hashtag;
+        this.videoUrl = videoUrl;
         this.email = email;
         this.password = password;
     }
