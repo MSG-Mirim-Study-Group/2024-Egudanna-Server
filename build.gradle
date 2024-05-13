@@ -30,10 +30,10 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	implementation 'javax.mail:mail:1.4.7'
-	implementation 'org.springframework.boot:spring-boot-starter-mail'
-
-	implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.14'
+//	implementation 'javax.mail:mail:1.4.7'
+//	implementation 'org.springframework.boot:spring-boot-starter-mail'
+//
+//	implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.14'
 
 }
 

@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="group")
+@Table(name="group_table")
 public class Group {
 
     @Id
@@ -22,9 +22,9 @@ public class Group {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+    @CollectionTable(name = "categories", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "category_id")
+    private Long categoryId;
 
 
 }
