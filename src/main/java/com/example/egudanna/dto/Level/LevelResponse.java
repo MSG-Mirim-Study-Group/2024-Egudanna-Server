@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddLevelRequest {
+public class LevelResponse {
 
-    private Long id;
     private String level;
 }
