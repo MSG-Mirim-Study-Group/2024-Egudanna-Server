@@ -34,7 +34,7 @@ public class GroupController {
 
     @DeleteMapping("/{group_id}")
     public void deleteGroup(@PathVariable("group_id") long group_id) {
-
+        groupService.delete(group_id);
     }
 
 }
