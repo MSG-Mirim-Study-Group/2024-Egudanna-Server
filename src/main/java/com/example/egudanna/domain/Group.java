@@ -22,9 +22,9 @@ public class Group {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @CollectionTable(name = "categories", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "category_id")
-    private Long categoryId;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
 
 }
