@@ -36,8 +36,8 @@ public class GroupService {
         return groupRepository.findAll();
     }
 
-    public List<Object[]> getCategoryGenreByGroupId(Long groupId) {
-        return groupRepository.findCategoryGenres(groupId);
+    public Group getCategoryGenreByGroupId(Long groupId) {
+        return groupRepository.findGroupById(groupId);
     }
 
     public void delete(Long groupid) {
