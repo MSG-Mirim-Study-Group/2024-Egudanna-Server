@@ -14,6 +14,8 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
 //    @Query("select g.category.genre from Group g where g.id= : groupId")
 //    String findCategoryGenreById(@Param("groupId") Long groupId);
 
-    @Query("select g.name, c.genre from Group g join g.category c where g.id= : groupId")
-    List<Object[]> findCategoryGenres(Long groupId);
+//    @Query("select g.name, c.genre from Group g join g.category c where g.id= : groupId")
+//    List<Object[]> findCategoryGenres(Long groupId);
+
+    Group findGroupById(Long id);
 }

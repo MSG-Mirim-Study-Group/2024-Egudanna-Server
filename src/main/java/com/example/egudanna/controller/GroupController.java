@@ -5,6 +5,7 @@ import com.example.egudanna.dto.Group.GroupResponse;
 import com.example.egudanna.repository.GroupRepository;
 import com.example.egudanna.service.GroupService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +29,9 @@ public class GroupController {
     }
 
     @GetMapping("/{group_id}")
-    public List<Object[]> getCategoryGenreByGroupId(@PathVariable("group_id") long group_id) {
-        return groupService.getCategoryGenreByGroupId(group_id);
+    public ResponseEntity<Group> getCategoryGenreByGroupId(@PathVariable("group_id") long group_id) {
+        Group group=groupService.getCategoryGenreByGroupId(group_id);
+        return ResponseEntity.ok(group);
     }
 
     @DeleteMapping("/{group_id}")
