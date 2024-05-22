@@ -37,9 +37,14 @@ public class GroupController {
     }
 
     @DeleteMapping("/{group_id}")
-    public void deleteGroup(@PathVariable("group_id") long group_id) {
+    public ResponseEntity<Map<String, Object>> deleteGroup(@PathVariable("group_id") long group_id) {
         groupService.delete(group_id);
 
+        Map<String, Object> response = new HashMap<>();
+        response.put("group_id", group_id);
+        response.put("message", "Group deleted successfully");
+
+        return ResponseEntity.ok().body(response);
     }
 
 }
