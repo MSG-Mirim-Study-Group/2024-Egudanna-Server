@@ -36,7 +36,7 @@ public class GroupService {
         return groupRepository.findAll();
     }
 
-    public Group getCategoryGenreByGroupId(Long groupId) {
+    public Group findGroupById(Long groupId) {
         return groupRepository.findGroupById(groupId);
     }
 
