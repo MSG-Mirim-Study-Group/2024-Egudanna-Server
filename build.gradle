@@ -25,16 +25,15 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.4'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
-//	implementation 'javax.mail:mail:1.4.7'
-//	implementation 'org.springframework.boot:spring-boot-starter-mail'
-//
-//	implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.14'
+	implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
 
 }
 
