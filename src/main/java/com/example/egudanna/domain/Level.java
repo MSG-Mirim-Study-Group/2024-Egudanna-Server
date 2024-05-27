@@ -19,5 +19,5 @@ public class Level {
     private Long id;
 
     @Column(name = "level", nullable = false)
-    private int level;
+    private String level;
 }

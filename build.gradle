@@ -30,7 +30,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	compileOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
+	implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.4'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
 	implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
