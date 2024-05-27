@@ -1,8 +1,6 @@
 package com.example.egudanna.service;
 
-import com.example.egudanna.domain.Challenge;
 import com.example.egudanna.domain.Video;
-import com.example.egudanna.dto.challenge.UpdateChallengeRequest;
 import com.example.egudanna.dto.video.AddVideoRequest;
 import com.example.egudanna.dto.video.UpdateVideoRequest;
 import com.example.egudanna.repository.VideoRepository;
