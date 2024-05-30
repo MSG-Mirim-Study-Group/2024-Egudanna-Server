@@ -26,9 +26,9 @@ public class Challenge extends BaseTimeEntity {
     @Column(name = "like_num")
     private Long likeNum;
 
-    @CollectionTable(name = "levels", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "level_id")
-    private Long levelId;
+    @ManyToOne
+    @JoinColumn(name = "level_id")
+    private Level level;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -48,10 +48,10 @@ public class Challenge extends BaseTimeEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
-    public void update(Long videoId, Long likeNum, Long levelId, String title, String nickname, String hashtag, String videoUrl, String email, String password) {
+    public void update(Long videoId, Long likeNum, Level level, String title, String nickname, String hashtag, String videoUrl, String email, String password) {
         this.videoId = videoId;
         this.likeNum = likeNum;
-        this.levelId = levelId;
+        this.level = level;
         this.title = title;
         this.nickname = nickname;
         this.hashtag = hashtag;
