@@ -2,9 +2,12 @@ package com.example.egudanna.dto.challenge;
 
 
 import com.example.egudanna.domain.Challenge;
+import com.example.egudanna.domain.Level;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.Optional;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,12 +24,12 @@ public class AddChallengeRequest {
     private String email;
     private String password;
 
-    public Challenge toEntity() {
+    public Challenge toEntity(Level level) {
         return Challenge.builder()
                 .id(id)
                 .videoId(videoId)
                 .likeNum(likeNum)
-                .levelId(levelId)
+                .level(level)
                 .title(title)
                 .nickname(nickname)
                 .hashtag(hashtag)

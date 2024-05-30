@@ -1,5 +1,6 @@
 package com.example.egudanna.dto.challenge;
 
+import com.example.egudanna.domain.Level;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
