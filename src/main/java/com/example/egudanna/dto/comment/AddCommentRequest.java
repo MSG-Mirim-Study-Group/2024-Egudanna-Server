@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class AddCommentRequest {
-    private Challenge challenge;
+    private Long challengeId;
     private String nickname;
     private String comment;
 
