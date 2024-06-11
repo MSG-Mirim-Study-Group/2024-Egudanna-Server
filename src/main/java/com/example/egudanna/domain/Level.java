@@ -15,7 +15,7 @@ import org.hibernate.annotations.DynamicUpdate;
 public class Level {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column(name = "levelId", updatable = false, nullable = false)
     private Long id;
 
     @Column(name = "level", nullable = false)

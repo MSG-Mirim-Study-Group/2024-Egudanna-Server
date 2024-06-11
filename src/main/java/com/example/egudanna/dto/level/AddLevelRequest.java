@@ -1,4 +1,4 @@
-package com.example.egudanna.dto.Level;
+package com.example.egudanna.dto.level;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddLevelRequest {
-
-    private Long id;
     private String level;
 }

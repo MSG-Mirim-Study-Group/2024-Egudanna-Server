@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class UpdateChallengeRequest {
-    private Long id;
     private Long videoId;
     private Long likeNum;
     private Long levelId;

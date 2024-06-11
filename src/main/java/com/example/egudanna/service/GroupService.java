@@ -2,7 +2,7 @@ package com.example.egudanna.service;
 
 import com.example.egudanna.domain.Category;
 import com.example.egudanna.domain.Group;
-import com.example.egudanna.dto.Group.GroupResponse;
+import com.example.egudanna.dto.group.GroupResponse;
 import com.example.egudanna.repository.CategoryRepository;
 import com.example.egudanna.repository.GroupRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,6 @@
 package com.example.egudanna.service;
 
 import com.example.egudanna.domain.Category;
-import com.example.egudanna.dto.Category.CategoryResponse;
 import com.example.egudanna.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -11,13 +11,13 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="group_table")
+@Table(name="groups")
 public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "groupId", nullable = false)
+    private long id;
 
     @Column(name = "name", nullable = false)
     private String name;

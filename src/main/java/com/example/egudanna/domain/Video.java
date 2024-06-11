@@ -16,23 +16,23 @@ public class Video extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false, nullable = false)
-    private Long videoId;
+    @Column(name = "videoId", updatable = false, nullable = false)
+    private Long id;
 
     @Column(name = "video_url", length = 20000)
     private String videoUrl;
 
-    @CollectionTable(name = "categories", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "category_id")
-    private Long categoryId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoryId", nullable = false)
+    private Category category;
 
-    @CollectionTable(name = "levels", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "level_id")
-    private Long levelId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "levelId", nullable = false)
+    private Level level;
 
-    public void update(String videoUrl, Long categoryId, Long levelId) {
+    public void update(String videoUrl, Category category, Level level) {
         this.videoUrl = videoUrl;
-        this.categoryId = categoryId;
-        this.levelId = levelId;
+        this.category = category;
+        this.level = level;
     }
 }
