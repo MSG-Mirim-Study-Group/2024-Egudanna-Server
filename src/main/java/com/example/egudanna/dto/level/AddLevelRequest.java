@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddLevelRequest {
-    private String level;
+    private Integer level;
 }

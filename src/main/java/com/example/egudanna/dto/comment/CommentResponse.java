@@ -8,11 +8,13 @@ import lombok.Getter;
 public class CommentResponse {
     private Long commentId;
     private Long challengeId;
+    private String nickname;
     private String comment;
 
     public CommentResponse(Comment comment) {
         this.commentId = comment.getId();
         this.challengeId = comment.getChallenge().getId();
+        this.nickname = comment.getNickname();
         this.comment = comment.getComment();
     }
 }

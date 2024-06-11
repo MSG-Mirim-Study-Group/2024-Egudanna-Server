@@ -11,11 +11,13 @@ import lombok.NoArgsConstructor;
 @Getter
 public class AddCommentRequest {
     private Challenge challenge;
+    private String nickname;
     private String comment;
 
     public Comment toEntity(Challenge challenge) {
         return Comment.builder()
                 .challenge(challenge)
+                .nickname(nickname)
                 .comment(comment)
                 .build();
     }
