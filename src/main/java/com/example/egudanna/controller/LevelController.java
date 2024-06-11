@@ -1,6 +1,7 @@
 package com.example.egudanna.controller;
 
 import com.example.egudanna.domain.Level;
+import com.example.egudanna.dto.level.AddLevelRequest;
 import com.example.egudanna.dto.level.LevelResponse;
 import com.example.egudanna.service.LevelService;
 import lombok.RequiredArgsConstructor;
@@ -12,29 +13,34 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/level")
+@RequestMapping("/api/levels")
 public class LevelController {
+
     private final LevelService levelService;
 
     @PostMapping
-    public ResponseEntity<Level> createLevel(@RequestBody LevelResponse addLevelRequest) {
-        levelService.createLevel(addLevelRequest);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<LevelResponse> addLevel(@RequestBody AddLevelRequest request) {
+        Level savedLevel = levelService.save(request);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new LevelResponse(savedLevel));
     }
 
     @GetMapping("/{level_id}")
-    public ResponseEntity<LevelResponse> getLevel(@PathVariable("level_id") Long level_id) {
-        Level level = levelService.getLevelById(level_id);
-        LevelResponse response = new LevelResponse(level.getLevel());
+    public ResponseEntity<LevelResponse> findLevel(@PathVariable("level_id") Long id) {
+        Level level = levelService.findById(id);
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return ResponseEntity.ok()
+                .body(new LevelResponse(level));
     }
 
-
     @GetMapping
-    public ResponseEntity<List<Level>> getLevels() {
-        List<Level> level = levelService.getAllLevels();
-        return ResponseEntity.ok().body(level);
+    public ResponseEntity<List<LevelResponse>> findAllLevels() {
+        List<LevelResponse> levels = levelService.findAll()
+                .stream()
+                .map(LevelResponse::new)
+                .toList();
+        return ResponseEntity.ok()
+                .body(levels);
     }
 
 }

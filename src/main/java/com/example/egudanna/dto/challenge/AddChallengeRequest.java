@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 @Getter
 public class AddChallengeRequest {
     private String videoUrl;
-    private Level level;
+//    private Level level;
+    private Long levelId;
     private Long likeNum;
     private String title;
     private String nickname;

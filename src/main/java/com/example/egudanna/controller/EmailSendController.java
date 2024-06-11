@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
-@RequestMapping("/mail")
+@RequestMapping("/api/mails")
 public class EmailSendController {
     private EmailService emailService;
 

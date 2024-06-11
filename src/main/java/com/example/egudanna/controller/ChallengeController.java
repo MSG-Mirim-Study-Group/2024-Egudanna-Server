@@ -3,6 +3,7 @@ package com.example.egudanna.controller;
 import com.example.egudanna.domain.Challenge;
 import com.example.egudanna.dto.challenge.AddChallengeRequest;
 import com.example.egudanna.dto.challenge.ChallengeResponse;
+import com.example.egudanna.dto.challenge.DeleteChallengeRequest;
 import com.example.egudanna.dto.challenge.UpdateChallengeRequest;
 import com.example.egudanna.service.ChallengeService;
 import lombok.RequiredArgsConstructor;
@@ -16,12 +17,24 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/api/challenges")
 public class ChallengeController {
 
     private final ChallengeService challengeService;
 
-    @PostMapping("/api/challenges")
+    @PostMapping
     public ResponseEntity<Map<String, Object>> addChallenge(@RequestBody AddChallengeRequest request) {
+        // videoUrl 검증
+        if (request.getVideoUrl() == null || request.getVideoUrl().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("message", "videoUrl must not be null or empty"));
+        }
+
+        if (request.getLevelId() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("message", "Level ID must not be null"));
+        }
+
         Challenge savedChallenge = challengeService.save(request);
 
         Map<String, Object> response = new HashMap<>();
@@ -32,7 +45,7 @@ public class ChallengeController {
                 .body(response);
     }
 
-    @GetMapping("/api/challenges")
+    @GetMapping
     public ResponseEntity<List<ChallengeResponse>> findAllChallenges() {
         List<ChallengeResponse> challenges = challengeService.findAll()
                 .stream()
@@ -43,7 +56,7 @@ public class ChallengeController {
                 .body(challenges);
     }
 
-    @GetMapping("/api/challenges/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ChallengeResponse> findChallenge(@PathVariable("id") Long id) {
         Challenge challenge = challengeService.findById(id);
 
@@ -51,22 +64,19 @@ public class ChallengeController {
                 .body(new ChallengeResponse(challenge));
     }
 
-    @PutMapping("/api/challenges/{id}")
-    public ResponseEntity<Map<String, Object>> updateChallenge(@PathVariable("id") Long id,
-                                         @RequestBody UpdateChallengeRequest request) {
+    @PutMapping("/{id}")
+    public ResponseEntity<ChallengeResponse> updateChallenge(@PathVariable("id") Long id,
+                                                               @RequestBody UpdateChallengeRequest request) {
         Challenge updatedChallenge = challengeService.update(id, request);
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("id", id);
-        response.put("message", "영상 수정이 완료되었습니다.");
-
         return ResponseEntity.ok()
-                .body(response);
+                .body(new ChallengeResponse(updatedChallenge));
     }
 
-    @DeleteMapping("/api/challenges/{id}")
-    public ResponseEntity<Map<String, Object>> deleteChallenge(@PathVariable("id") Long id) {
-        challengeService.delete(id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> deleteChallenge(@PathVariable("id") Long id,
+                                                               @RequestBody DeleteChallengeRequest request) {
+        challengeService.delete(id, request.getPassword());
 
         Map<String, Object> response = new HashMap<>();
         response.put("id", id);

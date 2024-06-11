@@ -19,8 +19,8 @@ public class ChallengeService {
     private final LevelRepository levelRepository;
 
     public Challenge save(AddChallengeRequest request) {
-        Level level = levelRepository.findById(request.getLevel().getId())
-                .orElseThrow(() -> new IllegalArgumentException("Level not found: "+request.getLevel().getId()));
+        Level level = levelRepository.findById(request.getLevelId())
+                .orElseThrow(() -> new IllegalArgumentException("Level not found: " + request.getLevelId()));
         return challengeRepository.save(request.toEntity(level));
     }
 
@@ -40,7 +40,6 @@ public class ChallengeService {
         Level level = levelRepository.findById(request.getLevelId())
                 .orElseThrow(() -> new IllegalArgumentException("Level not found: " + id));
         challenge.update(
-                request.getVideoUrl(),
                 request.getLikeNum(),
                 level,
                 request.getTitle(),
@@ -52,7 +51,14 @@ public class ChallengeService {
         return challenge;
     }
 
-    public void delete(Long id) {
+    public void delete(Long id, String password) {
+        Challenge challenge = challengeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
+
+        if (!challenge.getPassword().equals(password)) {
+            throw new IllegalArgumentException("Invalid password");
+        }
+
         challengeRepository.deleteById(id);
     }
 }
