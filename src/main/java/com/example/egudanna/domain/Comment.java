@@ -21,7 +21,10 @@ public class Comment {
     @JoinColumn(name = "challengeId", nullable = false)
     private Challenge challenge;
 
-    @Column(name = "comment")
+    @Column(name = "nickname", nullable = false)
+    private String nickname;
+
+    @Column(name = "comment", nullable = false)
     private String comment;
 
 }
