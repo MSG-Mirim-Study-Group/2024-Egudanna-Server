@@ -17,8 +17,8 @@ public class CommentService {
     private final ChallengeRepository challengeRepository;
 
     public Comment save(AddCommentRequest request) {
-        Challenge challenge = challengeRepository.findById(request.getChallenge().getId())
-                .orElseThrow(() -> new IllegalArgumentException("Challenge Id not found: "+request.getChallenge().getId()));
+        Challenge challenge = challengeRepository.findById(request.getChallengeId())
+                .orElseThrow(() -> new IllegalArgumentException("Challenge Id not found: "+request.getChallengeId()));
         Comment comment = request.toEntity(challenge);
         return commentRepository.save(comment);
     }
