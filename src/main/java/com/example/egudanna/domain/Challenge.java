@@ -16,19 +16,19 @@ public class Challenge extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column(name = "challengeId", updatable = false, nullable = false)
     private Long id;
 
-    @CollectionTable(name = "videos", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "video_id")
-    private Long videoId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "videoId", nullable = false)
+    private Video video;
 
     @Column(name = "like_num")
     private Long likeNum;
 
-    @CollectionTable(name = "levels", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "level_id")
-    private Long levelId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "levelId", nullable = false)
+    private Level level;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -48,10 +48,10 @@ public class Challenge extends BaseTimeEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
-    public void update(Long videoId, Long likeNum, Long levelId, String title, String nickname, String hashtag, String videoUrl, String email, String password) {
-        this.videoId = videoId;
+    public void update(Video video, Long likeNum, Level level, String title, String nickname, String hashtag, String videoUrl, String email, String password) {
+        this.video = video;
         this.likeNum = likeNum;
-        this.levelId = levelId;
+        this.level = level;
         this.title = title;
         this.nickname = nickname;
         this.hashtag = hashtag;

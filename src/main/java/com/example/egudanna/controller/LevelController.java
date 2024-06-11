@@ -1,7 +1,7 @@
 package com.example.egudanna.controller;
 
 import com.example.egudanna.domain.Level;
-import com.example.egudanna.dto.Level.LevelResponse;
+import com.example.egudanna.dto.level.LevelResponse;
 import com.example.egudanna.service.LevelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

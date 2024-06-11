@@ -6,7 +6,6 @@ import com.example.egudanna.dto.challenge.ChallengeResponse;
 import com.example.egudanna.dto.challenge.UpdateChallengeRequest;
 import com.example.egudanna.service.ChallengeService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.sql.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

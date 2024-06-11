@@ -9,12 +9,12 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name="question")
+@Table(name="questions")
 public class Question extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable = false)
+    @Column(name="questionId", nullable = false)
     private long id;
 
     @Column(name="question", nullable = false)

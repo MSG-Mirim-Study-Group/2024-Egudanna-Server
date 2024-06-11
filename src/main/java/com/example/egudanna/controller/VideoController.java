@@ -1,14 +1,11 @@
 package com.example.egudanna.controller;
 
-import com.example.egudanna.domain.Challenge;
 import com.example.egudanna.domain.Video;
-import com.example.egudanna.dto.challenge.UpdateChallengeRequest;
 import com.example.egudanna.dto.video.AddVideoRequest;
 import com.example.egudanna.dto.video.UpdateVideoRequest;
 import com.example.egudanna.dto.video.VideoResponse;
 import com.example.egudanna.service.VideoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +25,7 @@ public class VideoController {
         Video savedVideo = videoService.save(request);
 
         Map<String, Object> response = new HashMap<>();
-        response.put("id", savedVideo.getVideoId());
+        response.put("id", savedVideo.getId());
         response.put("message", "참고 영상 업로드가 완료되었습니다.");
 
         return ResponseEntity.status(HttpStatus.CREATED)

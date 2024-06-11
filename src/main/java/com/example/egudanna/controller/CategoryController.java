@@ -1,7 +1,7 @@
 package com.example.egudanna.controller;
 
 import com.example.egudanna.domain.Category;
-import com.example.egudanna.dto.Category.CategoryResponse;
+import com.example.egudanna.dto.category.CategoryResponse;
 import com.example.egudanna.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

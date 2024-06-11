@@ -1,7 +1,7 @@
 package com.example.egudanna.service;
 
 import com.example.egudanna.domain.Question;
-import com.example.egudanna.dto.Question.AddQuestionRequest;
+import com.example.egudanna.dto.question.AddQuestionRequest;
 import com.example.egudanna.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

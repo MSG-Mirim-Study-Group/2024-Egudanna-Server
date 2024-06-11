@@ -1,10 +1,9 @@
 package com.example.egudanna.controller;
 
 import com.example.egudanna.domain.Question;
-import com.example.egudanna.dto.Question.AddQuestionRequest;
+import com.example.egudanna.dto.question.AddQuestionRequest;
 import com.example.egudanna.service.QuestionService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

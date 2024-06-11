@@ -1,14 +1,14 @@
-package com.example.egudanna.dto.Question;
+package com.example.egudanna.dto.question;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class QuestionResponse {
+@NoArgsConstructor
+public class AddQuestionRequest {
 
     private String question;
-    private String answer;
+
 }

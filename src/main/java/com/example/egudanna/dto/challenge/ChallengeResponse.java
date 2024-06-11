@@ -3,6 +3,8 @@ package com.example.egudanna.dto.challenge;
 import com.example.egudanna.domain.Challenge;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 public class ChallengeResponse {
     private Long id;
@@ -15,17 +17,21 @@ public class ChallengeResponse {
     private String videoUrl;
     private String email;
     private String password;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
 
     public ChallengeResponse(Challenge challenge) {
         this.id = challenge.getId();
-        this.videoId = challenge.getVideoId();
+        this.videoId = challenge.getVideo().getId();
         this.likeNum = challenge.getLikeNum();
-        this.levelId = challenge.getLevelId();
+        this.levelId = challenge.getLevel().getId();
         this.title = challenge.getTitle();
         this.nickname = challenge.getNickname();
         this.hashtag = challenge.getHashtag();
         this.videoUrl = challenge.getVideoUrl();
         this.email = challenge.getEmail();
         this.password = challenge.getPassword();
+
     }
 }
