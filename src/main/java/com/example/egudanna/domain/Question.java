@@ -3,14 +3,14 @@ package com.example.egudanna.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Getter
+@Setter
 @Entity
+@Builder
 @Table(name="questions")
-public class Question extends BaseTimeEntity{
+public class Question extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

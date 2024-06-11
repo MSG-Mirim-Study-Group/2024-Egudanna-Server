@@ -9,7 +9,6 @@ import org.hibernate.annotations.DynamicUpdate;
 @Getter
 @Setter
 @Builder
-@DynamicUpdate
 @Entity
 @Table(name = "levels")
 public class Level {

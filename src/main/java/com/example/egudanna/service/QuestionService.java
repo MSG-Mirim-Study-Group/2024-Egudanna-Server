@@ -13,15 +13,16 @@ import java.util.List;
 public class QuestionService {
     private final QuestionRepository questionRepository;
 
-    public Question createQuestion(AddQuestionRequest addQuestionRequest) {
-        Question question1 = new Question();
-        question1.setQuestion(addQuestionRequest.getQuestion());
-
-        return questionRepository.save(question1);
+    public Question save(AddQuestionRequest request) {
+        return questionRepository.save(request.toEntity());
     }
 
     public List<Question> findAll() {
         return questionRepository.findAll();
     }
 
+    public Question findById(Long id) {
+        return questionRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Question Id not found: "+id));
+    }
 }

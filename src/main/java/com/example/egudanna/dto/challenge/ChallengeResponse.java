@@ -8,9 +8,9 @@ import java.time.LocalDateTime;
 @Getter
 public class ChallengeResponse {
     private Long id;
+    private Long levelId;
     private String videoUrl;
     private Long likeNum;
-    private Long levelId;
     private String title;
     private String nickname;
     private String hashtag;
@@ -22,7 +22,7 @@ public class ChallengeResponse {
 
     public ChallengeResponse(Challenge challenge) {
         this.id = challenge.getId();
-        this.videoUrl = getVideoUrl();
+        this.videoUrl = challenge.getVideoUrl();
         this.likeNum = challenge.getLikeNum();
         this.levelId = challenge.getLevel().getId();
         this.title = challenge.getTitle();

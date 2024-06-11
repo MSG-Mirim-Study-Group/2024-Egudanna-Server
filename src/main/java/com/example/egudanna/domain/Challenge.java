@@ -8,7 +8,6 @@ import org.hibernate.annotations.DynamicUpdate;
 @NoArgsConstructor
 @Getter
 @Setter
-@DynamicUpdate
 @Builder
 @Entity
 @Table(name = "challenges")
@@ -19,7 +18,7 @@ public class Challenge extends BaseTimeEntity {
     @Column(name = "challengeId", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "videoUrl", updatable = false, nullable = false, length = 20000)
+    @Column(name = "videoUrl", nullable = false, length = 10000)
     private String videoUrl;
 
     @Column(name = "likeNum")
@@ -44,8 +43,7 @@ public class Challenge extends BaseTimeEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
-    public void update(String videoUrl, Long likeNum, Level level, String title, String nickname, String hashtag, String email, String password) {
-        this.videoUrl = videoUrl;
+    public void update(Long likeNum, Level level, String title, String nickname, String hashtag, String email, String password) {
         this.likeNum = likeNum;
         this.level = level;
         this.title = title;
