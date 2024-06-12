@@ -6,9 +6,11 @@ import com.example.egudanna.dto.challenge.AddChallengeRequest;
 import com.example.egudanna.dto.challenge.UpdateChallengeRequest;
 import com.example.egudanna.repository.ChallengeRepository;
 import com.example.egudanna.repository.LevelRepository;
+import com.example.egudanna.service.email.EmailService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,11 +19,22 @@ import java.util.List;
 public class ChallengeService {
     private final ChallengeRepository challengeRepository;
     private final LevelRepository levelRepository;
+    private final EmailService emailService;
 
     public Challenge save(AddChallengeRequest request) {
         Level level = levelRepository.findById(request.getLevelId())
                 .orElseThrow(() -> new IllegalArgumentException("Level not found: " + request.getLevelId()));
-        return challengeRepository.save(request.toEntity(level));
+        Challenge challenge = challengeRepository.save(request.toEntity(level));
+
+        // 이메일 전송
+        if ( !challenge.getEmail().trim().equals("") ) {
+            MultipartFile[] attachments = {};
+            emailService.sendMail(attachments, challenge.getEmail(), new String[]{}, "Challenge Update", "Your challenge has been updated.");
+        }
+
+//        sendEmailIfPresent(challenge);
+
+        return challenge;
     }
 
     public List<Challenge> findAll() {
@@ -36,7 +49,7 @@ public class ChallengeService {
     @Transactional
     public Challenge update(Long id, UpdateChallengeRequest request) {
         Challenge challenge = challengeRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("not found: "+id));
+                .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
         Level level = levelRepository.findById(request.getLevelId())
                 .orElseThrow(() -> new IllegalArgumentException("Level not found: " + id));
         challenge.update(
@@ -47,6 +60,9 @@ public class ChallengeService {
                 request.getHashtag(),
                 request.getEmail(),
                 request.getPassword());
+
+        // 이메일 전송
+//        sendEmailIfPresent(challenge);
 
         return challenge;
     }
@@ -61,4 +77,11 @@ public class ChallengeService {
 
         challengeRepository.deleteById(id);
     }
+
+//    private void sendEmailIfPresent(Challenge challenge) {
+//        if (challenge.getEmail() != null && !challenge.getEmail().isEmpty()) {
+//            MultipartFile[] attachments = {}; // 첨부파일이 필요 없다면 빈 배열로 설정
+//            emailService.sendMail(attachments, challenge.getEmail(), new String[]{}, "Challenge Update", "Your challenge has been updated.");
+//        }
+//    }
 }
