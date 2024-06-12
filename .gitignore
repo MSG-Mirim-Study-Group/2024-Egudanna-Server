@@ -13,7 +13,7 @@ build/
 .settings
 .springBeans
 .sts4-cache
-.env
+.env*
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
@@ -155,6 +155,4 @@ fabric.properties
 .idea/**/azureSettings.xml
 
 ### SCRET KEY INFO
-application-aws.properties
-application-db.properties
-applictaion-gmail.properties
+application.properties

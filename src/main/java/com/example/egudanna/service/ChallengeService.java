@@ -27,12 +27,7 @@ public class ChallengeService {
         Challenge challenge = challengeRepository.save(request.toEntity(level));
 
         // 이메일 전송
-        if ( !challenge.getEmail().trim().equals("") ) {
-            MultipartFile[] attachments = {};
-            emailService.sendMail(attachments, challenge.getEmail(), new String[]{}, "Challenge Update", "Your challenge has been updated.");
-        }
-
-//        sendEmailIfPresent(challenge);
+        sendEmailIfPresent(challenge);
 
         return challenge;
     }
@@ -61,9 +56,6 @@ public class ChallengeService {
                 request.getEmail(),
                 request.getPassword());
 
-        // 이메일 전송
-//        sendEmailIfPresent(challenge);
-
         return challenge;
     }
 
@@ -78,10 +70,10 @@ public class ChallengeService {
         challengeRepository.deleteById(id);
     }
 
-//    private void sendEmailIfPresent(Challenge challenge) {
-//        if (challenge.getEmail() != null && !challenge.getEmail().isEmpty()) {
-//            MultipartFile[] attachments = {}; // 첨부파일이 필요 없다면 빈 배열로 설정
-//            emailService.sendMail(attachments, challenge.getEmail(), new String[]{}, "Challenge Update", "Your challenge has been updated.");
-//        }
-//    }
+    private void sendEmailIfPresent(Challenge challenge) {
+        if (!challenge.getEmail().trim().equals("")) {
+            MultipartFile[] attachments = {};
+            emailService.sendMail(attachments, challenge.getEmail(), "Challenge Update", "Your challenge has been updated.");
+        }
+    }
 }

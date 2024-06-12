@@ -20,7 +20,7 @@ public class EmailServiceImpl implements EmailService {
     private JavaMailSender javaMailSender;
 
     @Override
-    public String sendMail(MultipartFile[] file, String to, String[] cc, String subject, String body) {
+    public String sendMail(MultipartFile[] file, String to, String subject, String body) {
         try {
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
@@ -28,7 +28,6 @@ public class EmailServiceImpl implements EmailService {
 
             mimeMessageHelper.setFrom(fromEmail);
             mimeMessageHelper.setTo(to);
-            mimeMessageHelper.setCc(cc);
             mimeMessageHelper.setSubject(subject);
             mimeMessageHelper.setText(body);
 
