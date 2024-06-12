@@ -38,6 +38,8 @@ public class FileUploadController {
         );
 
         amazonS3Client.putObject(putObjectRequest);
+
+
     }
 
     private String generateObjectKey(String originalFilename) {

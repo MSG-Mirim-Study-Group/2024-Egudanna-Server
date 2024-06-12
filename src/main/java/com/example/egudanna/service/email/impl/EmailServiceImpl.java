@@ -5,6 +5,7 @@ import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.mail.MailSendException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -31,20 +32,18 @@ public class EmailServiceImpl implements EmailService {
             mimeMessageHelper.setSubject(subject);
             mimeMessageHelper.setText(body);
 
-            for (int i = 0; i < file.length; i++) {
-                mimeMessageHelper.addAttachment(
-                        file[i].getOriginalFilename(),
-                        new ByteArrayResource(file[i].getBytes()));
+            for (MultipartFile multipartFile : file) {
+                mimeMessageHelper.addAttachment(multipartFile.getOriginalFilename(), new ByteArrayResource(multipartFile.getBytes()));
             }
-
             javaMailSender.send(mimeMessage);
-
             return "mail send";
 
+        } catch (MailSendException e) {
+            // Detailed logging for MailSendException
+            return "Failed to send email: " + e.getMessage();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            // General exception handling
+            throw new RuntimeException("Email sending failed", e);
         }
-
-
     }
 }

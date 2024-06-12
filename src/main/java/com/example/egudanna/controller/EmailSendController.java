@@ -1,6 +1,9 @@
 package com.example.egudanna.controller;
 
+import com.example.egudanna.domain.Challenge;
+import com.example.egudanna.repository.ChallengeRepository;
 import com.example.egudanna.service.email.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,8 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/api/mails")
 public class EmailSendController {
-    private EmailService emailService;
+    private final EmailService emailService;
 
+    @Autowired
     public EmailSendController(EmailService emailService) {
         this.emailService = emailService;
     }
@@ -22,6 +26,9 @@ public class EmailSendController {
                            @RequestParam("to") String to,
                            @RequestParam("subject") String subject,
                            @RequestParam("body") String body) {
+
+
+
         return emailService.sendMail(file, to, subject, body);
     }
 

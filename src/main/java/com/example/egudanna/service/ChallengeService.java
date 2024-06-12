@@ -24,12 +24,7 @@ public class ChallengeService {
     public Challenge save(AddChallengeRequest request) {
         Level level = levelRepository.findById(request.getLevelId())
                 .orElseThrow(() -> new IllegalArgumentException("Level not found: " + request.getLevelId()));
-        Challenge challenge = challengeRepository.save(request.toEntity(level));
-
-        // 이메일 전송
-        sendEmailIfPresent(challenge);
-
-        return challenge;
+        return challengeRepository.save(request.toEntity(level));
     }
 
     public List<Challenge> findAll() {
