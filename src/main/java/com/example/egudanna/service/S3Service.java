@@ -1,8 +1,10 @@
 package com.example.egudanna.service;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class S3Service {
@@ -77,5 +81,17 @@ public class S3Service {
         }
 
         return outputStream.toByteArray();
+    }
+
+    // S3 버킷의 파일 목록을 가져오는 메서드
+    public List<String> listFiles(String bucketName) {
+        List<String> fileNames = new ArrayList<>();
+        ObjectListing objectListing = amazonS3.listObjects(bucketName);
+
+        for (S3ObjectSummary os : objectListing.getObjectSummaries()) {
+            fileNames.add(os.getKey());
+        }
+
+        return fileNames;
     }
 }
