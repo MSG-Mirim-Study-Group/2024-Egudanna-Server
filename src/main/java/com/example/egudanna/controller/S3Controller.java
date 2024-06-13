@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,7 +30,7 @@ public class S3Controller {
     }
 
     @PostMapping("/upload")
-    public void uploadMultipleFile(@RequestParam(value = "file", name = "file") MultipartFile file) throws IOException {
+    public String uploadMultipleFile(@RequestParam(value = "file", name = "file") MultipartFile file) throws IOException {
         String objectKey = generateObjectKey(file.getOriginalFilename());
 
         ObjectMetadata objectMetadata = new ObjectMetadata();
@@ -37,13 +38,17 @@ public class S3Controller {
         objectMetadata.setContentLength(file.getSize());
 
         PutObjectRequest putObjectRequest = new PutObjectRequest(
-                "2024-egudanna-challenge",
+                bucketName,
                 objectKey,
                 file.getInputStream(),
                 objectMetadata
         );
 
         amazonS3Client.putObject(putObjectRequest);
+
+        URL fileUrl = amazonS3Client.getUrl(bucketName, objectKey);
+
+        return fileUrl.toString();
     }
 
     @GetMapping("/download/local")
