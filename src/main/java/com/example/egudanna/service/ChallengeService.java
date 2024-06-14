@@ -1,10 +1,12 @@
 package com.example.egudanna.service;
 
 import com.example.egudanna.domain.Challenge;
+import com.example.egudanna.domain.Comment;
 import com.example.egudanna.domain.Level;
 import com.example.egudanna.dto.challenge.AddChallengeRequest;
 import com.example.egudanna.dto.challenge.UpdateChallengeRequest;
 import com.example.egudanna.repository.ChallengeRepository;
+import com.example.egudanna.repository.CommentRepository;
 import com.example.egudanna.repository.LevelRepository;
 import com.example.egudanna.service.email.EmailService;
 import jakarta.transaction.Transactional;
@@ -13,12 +15,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class ChallengeService {
     private final ChallengeRepository challengeRepository;
     private final LevelRepository levelRepository;
+    private final CommentRepository commentRepository;
     private final EmailService emailService;
 
     public Challenge save(AddChallengeRequest request) {
@@ -34,6 +38,13 @@ public class ChallengeService {
     public Challenge findById(Long id) {
         return challengeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found "+id));
+    }
+
+    public Challenge findByIdWithComments(Long id) {
+        Challenge challenge = findById(id);
+        List<Comment> comments = commentRepository.findAllByChallengeId(id);
+        challenge.setComments(comments);  // Challenge 엔티티에 setComments 메서드 추가 필요
+        return challenge;
     }
 
     @Transactional
