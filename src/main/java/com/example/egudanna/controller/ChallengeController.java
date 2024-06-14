@@ -5,6 +5,7 @@ import com.example.egudanna.dto.challenge.AddChallengeRequest;
 import com.example.egudanna.dto.challenge.ChallengeResponse;
 import com.example.egudanna.dto.challenge.DeleteChallengeRequest;
 import com.example.egudanna.dto.challenge.UpdateChallengeRequest;
+import com.example.egudanna.dto.comment.CommentResponse;
 import com.example.egudanna.service.ChallengeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
@@ -58,19 +60,15 @@ public class ChallengeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ChallengeResponse> findChallenge(@PathVariable("id") Long id) {
-        Challenge challenge = challengeService.findById(id);
+        Challenge challenge = challengeService.findByIdWithComments(id);
+        List<CommentResponse> comments = challenge.getComments().stream()
+                .map(CommentResponse::new)
+                .collect(Collectors.toList());
+
+        ChallengeResponse response = new ChallengeResponse(challenge, comments);
 
         return ResponseEntity.ok()
-                .body(new ChallengeResponse(challenge));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<ChallengeResponse> updateChallenge(@PathVariable("id") Long id,
-                                                               @RequestBody UpdateChallengeRequest request) {
-        Challenge updatedChallenge = challengeService.update(id, request);
-
-        return ResponseEntity.ok()
-                .body(new ChallengeResponse(updatedChallenge));
+                .body(response);
     }
 
     @DeleteMapping("/{id}")
