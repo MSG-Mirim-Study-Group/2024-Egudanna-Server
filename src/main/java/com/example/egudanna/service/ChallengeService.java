@@ -75,4 +75,12 @@ public class ChallengeService {
 
         challengeRepository.deleteById(id);
     }
+
+    @Transactional
+    public Challenge incrementLikeNum(Long id) {
+        Challenge challenge = challengeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Challenge not found: " + id));
+        challenge.setLikeNum(challenge.getLikeNum() + 1);
+        return challengeRepository.save(challenge);
+    }
 }
