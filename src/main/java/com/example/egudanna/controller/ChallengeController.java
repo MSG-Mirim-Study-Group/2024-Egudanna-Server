@@ -83,4 +83,16 @@ public class ChallengeController {
         return ResponseEntity.ok()
                 .body(response);
     }
+
+    @PostMapping("/{id}/like")
+    public ResponseEntity<Map<String, Object>> incrementLikeNum(@PathVariable("id") Long id) {
+        Challenge updatedChallenge = challengeService.incrementLikeNum(id);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("id", updatedChallenge.getId());
+        response.put("likeNum", updatedChallenge.getLikeNum());
+        response.put("message", "Like number has been incremented.");
+
+        return ResponseEntity.ok(response);
+    }
 }
