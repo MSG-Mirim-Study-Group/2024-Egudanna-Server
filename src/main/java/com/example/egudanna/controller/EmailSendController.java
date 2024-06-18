@@ -22,14 +22,11 @@ public class EmailSendController {
     }
 
     @PostMapping("/send")
-    public String sendMail(@RequestParam(value = "file", name = "file") MultipartFile[] file,
-                           @RequestParam("to") String to,
+    public String sendMail(@RequestParam("to") String to,
                            @RequestParam("subject") String subject,
                            @RequestParam("body") String body) {
 
-
-
-        return emailService.sendMail(file, to, subject, body);
+        return emailService.sendMail(to, subject, body);
     }
 
 }

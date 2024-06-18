@@ -37,7 +37,7 @@ public class ChallengeService {
 
     public Challenge findById(Long id) {
         return challengeRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("not found "+id));
+                .orElseThrow(() -> new IllegalArgumentException("not found " + id));
     }
 
     public Challenge findByIdWithComments(Long id) {
@@ -74,12 +74,5 @@ public class ChallengeService {
         }
 
         challengeRepository.deleteById(id);
-    }
-
-    private void sendEmailIfPresent(Challenge challenge) {
-        if (!challenge.getEmail().trim().equals("")) {
-            MultipartFile[] attachments = {};
-            emailService.sendMail(attachments, challenge.getEmail(), "Challenge Update", "Your challenge has been updated.");
-        }
     }
 }
