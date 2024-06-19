@@ -95,4 +95,15 @@ public class ChallengeController {
 
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<ChallengeResponse>> searchChallenges(@RequestParam("keyword") String keyword) {
+        List<ChallengeResponse> challenges = challengeService.searchChallenges(keyword)
+                .stream()
+                .map(ChallengeResponse::new)
+                .toList();
+
+        return ResponseEntity.ok()
+                .body(challenges);
+    }
 }
