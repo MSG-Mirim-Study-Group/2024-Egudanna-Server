@@ -4,6 +4,7 @@ import com.example.egudanna.domain.Challenge;
 import com.example.egudanna.domain.Comment;
 import com.example.egudanna.domain.Level;
 import com.example.egudanna.dto.challenge.AddChallengeRequest;
+import com.example.egudanna.dto.challenge.ChallengeResponse;
 import com.example.egudanna.dto.challenge.UpdateChallengeRequest;
 import com.example.egudanna.repository.ChallengeRepository;
 import com.example.egudanna.repository.CommentRepository;
@@ -11,7 +12,10 @@ import com.example.egudanna.repository.LevelRepository;
 import com.example.egudanna.service.email.EmailService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -23,7 +27,6 @@ public class ChallengeService {
     private final ChallengeRepository challengeRepository;
     private final LevelRepository levelRepository;
     private final CommentRepository commentRepository;
-    private final EmailService emailService;
 
     public Challenge save(AddChallengeRequest request) {
         Level level = levelRepository.findById(request.getLevelId())
@@ -82,5 +85,12 @@ public class ChallengeService {
                 .orElseThrow(() -> new IllegalArgumentException("Challenge not found: " + id));
         challenge.setLikeNum(challenge.getLikeNum() + 1);
         return challengeRepository.save(challenge);
+    }
+
+    public List<Challenge> searchChallenges(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return findAll();
+        }
+        return challengeRepository.searchChallenges(keyword);
     }
 }
